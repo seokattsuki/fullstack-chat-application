@@ -34,8 +34,8 @@ app.use("/api/messages", messageRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  // Change this line - replace * with a regex pattern
-  app.get(/^(?!\/api).*/, (req, res) => {
+  // Use parameter-based catch-all route instead of wildcard
+  app.get('/:path(*)', (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
