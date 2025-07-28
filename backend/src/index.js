@@ -56,9 +56,18 @@ try {
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-  });
+  // Fix: Use a more specific catch-all pattern
+  console.log('Registering catch-all route...');
+  try {
+    app.get("/*", (req, res) => {
+      console.log('Catch-all route hit for:', req.path);
+      res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    });
+    console.log('Catch-all route registered successfully');
+  } catch (error) {
+    console.error('Error registering catch-all route:', error.message);
+    throw error;
+  }
 }
 
 // Start server
