@@ -13,6 +13,17 @@ dotenv.config();
 const PORT = process.env.PORT || 5001;
 const __dirname = path.resolve();
 
+// DEBUG: Add route debugging
+const originalUse = app.use;
+app.use = function(path, ...args) {
+  console.log('Registering middleware/route for path:', path);
+  try {
+    return originalUse.call(this, path, ...args);
+  } catch (error) {
+    console.error('Error registering route for path:', path, 'Error:', error.message);
+    throw error;
+  }
+};
 
 // Middleware
 app.use(express.json({ limit: "10mb" }));
@@ -23,9 +34,24 @@ app.use(cors({
   credentials: true,
 }));
 
-// Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/messages", messageRoutes);
+// Routes - with try-catch for debugging
+console.log('Loading auth routes...');
+try {
+  app.use("/api/auth", authRoutes);
+  console.log('Auth routes loaded successfully');
+} catch (error) {
+  console.error('Error loading auth routes:', error.message);
+  throw error;
+}
+
+console.log('Loading message routes...');
+try {
+  app.use("/api/messages", messageRoutes);
+  console.log('Message routes loaded successfully');
+} catch (error) {
+  console.error('Error loading message routes:', error.message);
+  throw error;
+}
 
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -34,7 +60,6 @@ if(process.env.NODE_ENV === "production"){
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
-
 
 // Start server
 server.listen(PORT, () => {
