@@ -17,20 +17,6 @@ Welcome to **Chatty**, a sleek and modern real-time chat application built with 
 
 ---
 
-## 🚀 Sneak Peek
-
-Here's a glimpse of Chatty in action.
-
-| Login & Register | Main Chat Interface |
-| :----------------: | :-------------------: |
-| ![Chatty Login Page](http://googleusercontent.com/file_content/1) | ![Chatty Main Interface](http://googleusercontent.com/file_content/2) |
-| **In-Conversation View** | **User Profile Page** |
-| ![Chatty Conversation View](http://googleusercontent.com/file_content/4) | ![Chatty User Profile](http://googleusercontent.com/file_content/0) |
-| **Theme Selection** | |
-| ![Chatty Theme Selection](http://googleusercontent.com/file_content/3) | |
-
----
-
 ## 🛠️ Tech Stack
 
 | Category | Technology |
