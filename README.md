@@ -98,10 +98,6 @@ Follow these instructions to get a local copy up and running.
         npm run dev
         ```
 
-    Open your browser and navigate to `http://localhost:3000` to see the application live!
+    Open your browser and navigate to `https://chatty-z3y4.onrender.com` to see the application live!
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
